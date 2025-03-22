@@ -32,11 +32,12 @@ source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 pip install flask flask-session google-generativeai python-dotenv
 ```
 
-### 4. Set Up Environment Variables
-Create a `.env` file in the root directory and add your Gemini API key:
+### 4. Create an `.env` File
+Create a `.env` file in the root directory of the project and add the following content:
 ```
 GEMINI_API_KEY=your_google_gemini_api_key_here
 ```
+Replace `your_google_gemini_api_key_here` with your actual Gemini API key.
 
 ### 5. Run the Application
 ```sh
