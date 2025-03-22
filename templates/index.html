@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot - Fictional Character Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-roboto">
+    <div class="container mx-auto p-4">
+        <div class="max-w-3xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+            <div class="bg-gradient-to-r from-blue-500 to-purple-500 p-4 text-white text-center">
+                <h1 class="text-2xl font-bold">AI Chatbot - Fictional Character Mode</h1>
+            </div>
+            <div class="p-4">
+                <!-- Character Selection Form -->
+                <form id="character-form" class="mb-4">
+                    <label for="character-name" class="block text-gray-700 text-sm font-bold mb-2">Enter a Fictional Character:</label>
+                    <input type="text" id="character-name" name="character-name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="e.g., Sherlock Holmes" required>
+                    <button type="submit" class="mt-4 w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Set Personality</button>
+                </form>
+                
+                <!-- Chatbox -->
+                <div id="chatbox" class="bg-gray-100 p-4 rounded-lg h-96 overflow-y-auto space-y-3">
+                    <div class="text-center text-gray-500">Please select a character to start chatting.</div>
+                </div>
+
+                <!-- Chat Input Form -->
+                <form id="chat-form" class="mt-4 flex">
+                    <input type="text" id="user-input" name="user-input" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Type your message..." disabled>
+                    <button type="submit" class="ml-2 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" disabled>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let characterName = "";
+
+        // Handle character selection
+        document.getElementById('character-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            characterName = document.getElementById('character-name').value.trim();
+            const chatbox = document.getElementById('chatbox');
+
+            if (characterName) {
+                fetch("/start", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ character: characterName, source: "Custom" })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    chatbox.innerHTML = `<div class="text-center text-gray-700 font-semibold">${data.message}</div>`;
+                    
+                    // Enable chat input
+                    document.getElementById('user-input').disabled = false;
+                    document.querySelector("#chat-form button").disabled = false;
+                });
+            }
+        });
+
+        // Handle chat messages
+        document.getElementById('chat-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const userInput = document.getElementById('user-input').value.trim();
+            const chatbox = document.getElementById('chatbox');
+
+            if (!userInput) return;
+
+            // Append user message
+            chatbox.innerHTML += `<div class="text-right"><span class="bg-blue-500 text-white py-2 px-4 rounded-lg inline-block">${userInput}</span></div>`;
+            document.getElementById('user-input').value = '';
+
+            // Show "Typing..." animation
+            const typingDiv = document.createElement('div');
+            typingDiv.className = "text-left text-gray-500 flex items-center";
+            typingDiv.innerHTML = `<span class="typing-dots">Typing</span><span class="dot">.</span><span class="dot">.</span><span class="dot">.</span>`;
+            chatbox.appendChild(typingDiv);
+            chatbox.scrollTop = chatbox.scrollHeight;
+
+            fetch("/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: userInput })
+            })
+            .then(response => response.json())
+            .then(data => {
+                typingDiv.remove(); // Remove "Typing..." indicator
+                typeText(chatbox, data.response);
+            });
+        });
+
+        // Typing effect function
+        function typeText(container, text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = "text-left";
+            const messageSpan = document.createElement('span');
+            messageSpan.className = "bg-gray-300 text-gray-700 py-2 px-4 rounded-lg inline-block";
+            messageDiv.appendChild(messageSpan);
+            container.appendChild(messageDiv);
+            container.scrollTop = container.scrollHeight;
+
+            let index = 0;
+            function typeLetter() {
+                if (index < text.length) {
+                    messageSpan.innerHTML += text.charAt(index);
+                    index++;
+                    setTimeout(typeLetter, 30); // Adjust speed here
+                }
+            }
+            typeLetter();
+        }
+    </script>
+
+    <style>
+        .dot {
+            animation: blink 1.5s infinite;
+        }
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</body>
+</html>
