@@ -1,0 +1,163 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 350px;
+                 background-color: #0E1117;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"font": {"color": "white"}, "group": 1, "id": "Slytherin", "label": "Slytherin", "shape": "dot", "size": 10, "title": "Slytherin"}, {"font": {"color": "white"}, "group": 1, "id": "Harry", "label": "Harry", "shape": "dot", "size": 10, "title": "Harry"}, {"font": {"color": "white"}, "group": 1, "id": "Percy Weasley", "label": "Percy Weasley", "shape": "dot", "size": 10, "title": "Percy Weasley"}, {"font": {"color": "white"}, "group": 1, "id": "Ron", "label": "Ron", "shape": "dot", "size": 10, "title": "Ron"}, {"font": {"color": "white"}, "group": 1, "id": "Severus Snape", "label": "Severus Snape", "shape": "dot", "size": 10, "title": "Severus Snape"}, {"font": {"color": "white"}, "group": 1, "id": "the Chocolate Frog", "label": "the Chocolate Frog", "shape": "dot", "size": 10, "title": "the Chocolate Frog"}, {"font": {"color": "white"}, "group": 1, "id": "Quirrell", "label": "Quirrell", "shape": "dot", "size": 10, "title": "Quirrell"}, {"font": {"color": "white"}, "group": 1, "id": "the Leaky Cauldron", "label": "the Leaky Cauldron", "shape": "dot", "size": 10, "title": "the Leaky Cauldron"}, {"font": {"color": "white"}, "group": 1, "id": "Dean", "label": "Dean", "shape": "dot", "size": 10, "title": "Dean"}, {"font": {"color": "white"}, "group": 1, "id": "Thomas", "label": "Thomas", "shape": "dot", "size": 10, "title": "Thomas"}, {"font": {"color": "white"}, "group": 1, "id": "Gryffindor", "label": "Gryffindor", "shape": "dot", "size": 10, "title": "Gryffindor"}, {"font": {"color": "white"}, "group": 1, "id": "Hagrid", "label": "Hagrid", "shape": "dot", "size": 10, "title": "Hagrid"}, {"font": {"color": "white"}, "group": 1, "id": "Wood", "label": "Wood", "shape": "dot", "size": 10, "title": "Wood"}, {"font": {"color": "white"}, "group": 1, "id": "Seeker", "label": "Seeker", "shape": "dot", "size": 10, "title": "Seeker"}, {"font": {"color": "white"}, "group": 1, "id": "McGonagall", "label": "McGonagall", "shape": "dot", "size": 10, "title": "McGonagall"}, {"font": {"color": "white"}, "group": 1, "id": "H. Potter", "label": "H. Potter", "shape": "dot", "size": 10, "title": "H. Potter"}, {"font": {"color": "white"}, "group": 1, "id": "The Floor", "label": "The Floor", "shape": "dot", "size": 10, "title": "The Floor"}, {"font": {"color": "white"}, "group": 1, "id": "Weasley", "label": "Weasley", "shape": "dot", "size": 10, "title": "Weasley"}, {"font": {"color": "white"}, "group": 1, "id": "Prefect", "label": "Prefect", "shape": "dot", "size": 10, "title": "Prefect"}, {"font": {"color": "white"}, "group": 1, "id": "the High Table", "label": "the High Table", "shape": "dot", "size": 10, "title": "the High Table"}, {"font": {"color": "white"}, "group": 1, "id": "Albus Dumbledore", "label": "Albus Dumbledore", "shape": "dot", "size": 10, "title": "Albus Dumbledore"}, {"font": {"color": "white"}, "group": 1, "id": "Neville", "label": "Neville", "shape": "dot", "size": 10, "title": "Neville"}, {"font": {"color": "white"}, "group": 1, "id": "Lisa", "label": "Lisa", "shape": "dot", "size": 10, "title": "Lisa"}, {"font": {"color": "white"}, "group": 1, "id": "Turpin", "label": "Turpin", "shape": "dot", "size": 10, "title": "Turpin"}, {"font": {"color": "white"}, "group": 1, "id": "Ron\u2019s", "label": "Ron\u2019s", "shape": "dot", "size": 10, "title": "Ron\u2019s"}, {"font": {"color": "white"}, "group": 1, "id": "Ravenclaw", "label": "Ravenclaw", "shape": "dot", "size": 10, "title": "Ravenclaw"}, {"font": {"color": "white"}, "group": 1, "id": "Stone", "label": "Stone", "shape": "dot", "size": 10, "title": "Stone"}, {"font": {"color": "white"}, "group": 1, "id": "Dursleys", "label": "Dursleys", "shape": "dot", "size": 10, "title": "Dursleys"}, {"font": {"color": "white"}, "group": 1, "id": "Vernon Dursley", "label": "Vernon Dursley", "shape": "dot", "size": 10, "title": "Vernon Dursley"}, {"font": {"color": "white"}, "group": 1, "id": "yeh\u2019ve", "label": "yeh\u2019ve", "shape": "dot", "size": 10, "title": "yeh\u2019ve"}, {"font": {"color": "white"}, "group": 1, "id": "un", "label": "un", "shape": "dot", "size": 10, "title": "un"}, {"font": {"color": "white"}, "group": 1, "id": "Dudley", "label": "Dudley", "shape": "dot", "size": 10, "title": "Dudley"}, {"font": {"color": "white"}, "group": 1, "id": "Uncle Vernon", "label": "Uncle Vernon", "shape": "dot", "size": 10, "title": "Uncle Vernon"}, {"font": {"color": "white"}, "group": 1, "id": "Yeh", "label": "Yeh", "shape": "dot", "size": 10, "title": "Yeh"}, {"font": {"color": "white"}, "group": 1, "id": "yeh don", "label": "yeh don", "shape": "dot", "size": 10, "title": "yeh don"}, {"font": {"color": "white"}, "group": 1, "id": "yeh", "label": "yeh", "shape": "dot", "size": 10, "title": "yeh"}, {"font": {"color": "white"}, "group": 1, "id": "Uncle Vernon\u2019s", "label": "Uncle Vernon\u2019s", "shape": "dot", "size": 10, "title": "Uncle Vernon\u2019s"}, {"font": {"color": "white"}, "group": 1, "id": "Dursley", "label": "Dursley", "shape": "dot", "size": 10, "title": "Dursley"}, {"font": {"color": "white"}, "group": 1, "id": "don", "label": "don", "shape": "dot", "size": 10, "title": "don"}, {"font": {"color": "white"}, "group": 1, "id": "Dumbledore", "label": "Dumbledore", "shape": "dot", "size": 10, "title": "Dumbledore"}, {"font": {"color": "white"}, "group": 1, "id": "I\u2019m Keeper of Keys at Hogwarts", "label": "I\u2019m Keeper of Keys at Hogwarts", "shape": "dot", "size": 10, "title": "I\u2019m Keeper of Keys at Hogwarts"}, {"font": {"color": "white"}, "group": 1, "id": "Hogwarts", "label": "Hogwarts", "shape": "dot", "size": 10, "title": "Hogwarts"}, {"font": {"color": "white"}, "group": 1, "id": "nothin\u2019", "label": "nothin\u2019", "shape": "dot", "size": 10, "title": "nothin\u2019"}, {"font": {"color": "white"}, "group": 1, "id": "Chf", "label": "Chf", "shape": "dot", "size": 10, "title": "Chf"}, {"font": {"color": "white"}, "group": 1, "id": "WIZARDRY", "label": "WIZARDRY", "shape": "dot", "size": 10, "title": "WIZARDRY"}, {"font": {"color": "white"}, "group": 1, "id": "International Confed", "label": "International Confed", "shape": "dot", "size": 10, "title": "International Confed"}, {"font": {"color": "white"}, "group": 1, "id": "Wizards", "label": "Wizards", "shape": "dot", "size": 10, "title": "Wizards"}, {"font": {"color": "white"}, "group": 1, "id": "Supreme Mugwump,", "label": "Supreme Mugwump,", "shape": "dot", "size": 10, "title": "Supreme Mugwump,"}, {"font": {"color": "white"}, "group": 1, "id": "Wizardry", "label": "Wizardry", "shape": "dot", "size": 10, "title": "Wizardry"}, {"font": {"color": "white"}, "group": 1, "id": "Potter", "label": "Potter", "shape": "dot", "size": 10, "title": "Potter"}, {"font": {"color": "white"}, "group": 1, "id": "Hogwarts School of Witchcraft", "label": "Hogwarts School of Witchcraft", "shape": "dot", "size": 10, "title": "Hogwarts School of Witchcraft"}, {"font": {"color": "white"}, "group": 1, "id": "Peeves", "label": "Peeves", "shape": "dot", "size": 10, "title": "Peeves"}, {"font": {"color": "white"}, "group": 1, "id": "Percy", "label": "Percy", "shape": "dot", "size": 10, "title": "Percy"}, {"font": {"color": "white"}, "group": 1, "id": "Caput Draconis", "label": "Caput Draconis", "shape": "dot", "size": 10, "title": "Caput Draconis"}]);
+                  edges = new vis.DataSet([{"color": "#555555", "from": "Slytherin", "to": "Harry", "width": 2}, {"color": "#555555", "from": "Slytherin", "to": "Percy Weasley", "width": 1}, {"color": "#555555", "from": "Slytherin", "to": "Ron", "width": 1}, {"color": "#555555", "from": "Slytherin", "to": "Severus Snape", "width": 1}, {"color": "#555555", "from": "Harry", "to": "the Chocolate Frog", "width": 1}, {"color": "#555555", "from": "Harry", "to": "Quirrell", "width": 1}, {"color": "#555555", "from": "Harry", "to": "the Leaky Cauldron", "width": 1}, {"color": "#555555", "from": "Harry", "to": "Dean", "width": 1}, {"color": "#555555", "from": "Harry", "to": "Thomas", "width": 1}, {"color": "#555555", "from": "Harry", "to": "Gryffindor", "width": 1}, {"color": "#555555", "from": "Harry", "to": "Ron", "width": 3}, {"color": "#555555", "from": "Harry", "to": "Percy Weasley", "width": 1}, {"color": "#555555", "from": "Harry", "to": "Hagrid", "width": 4}, {"color": "#555555", "from": "Harry", "to": "Wood", "width": 1}, {"color": "#555555", "from": "Harry", "to": "Seeker", "width": 1}, {"color": "#555555", "from": "Harry", "to": "McGonagall", "width": 1}, {"color": "#555555", "from": "Harry", "to": "H. Potter", "width": 1}, {"color": "#555555", "from": "Harry", "to": "The Floor", "width": 1}, {"color": "#555555", "from": "Weasley", "to": "Prefect", "width": 1}, {"color": "#555555", "from": "the High Table", "to": "Albus Dumbledore", "width": 1}, {"color": "#555555", "from": "Quirrell", "to": "the Leaky Cauldron", "width": 1}, {"color": "#555555", "from": "Dean", "to": "Thomas", "width": 1}, {"color": "#555555", "from": "Dean", "to": "Gryffindor", "width": 1}, {"color": "#555555", "from": "Dean", "to": "Ron", "width": 1}, {"color": "#555555", "from": "Thomas", "to": "Gryffindor", "width": 1}, {"color": "#555555", "from": "Thomas", "to": "Ron", "width": 1}, {"color": "#555555", "from": "Gryffindor", "to": "Ron", "width": 2}, {"color": "#555555", "from": "Gryffindor", "to": "Neville", "width": 1}, {"color": "#555555", "from": "Ron", "to": "Percy Weasley", "width": 1}, {"color": "#555555", "from": "Lisa", "to": "Turpin", "width": 1}, {"color": "#555555", "from": "Lisa", "to": "Ron\u2019s", "width": 1}, {"color": "#555555", "from": "Lisa", "to": "Ravenclaw", "width": 1}, {"color": "#555555", "from": "Turpin", "to": "Ron\u2019s", "width": 1}, {"color": "#555555", "from": "Turpin", "to": "Ravenclaw", "width": 1}, {"color": "#555555", "from": "Ron\u2019s", "to": "Ravenclaw", "width": 1}, {"color": "#555555", "from": "Hagrid", "to": "Stone", "width": 1}, {"color": "#555555", "from": "Hagrid", "to": "Dursleys", "width": 1}, {"color": "#555555", "from": "Hagrid", "to": "Vernon Dursley", "width": 1}, {"color": "#555555", "from": "Hagrid", "to": "yeh\u2019ve", "width": 1}, {"color": "#555555", "from": "Hagrid", "to": "un", "width": 1}, {"color": "#555555", "from": "McGonagall", "to": "Wood", "width": 2}, {"color": "#555555", "from": "Wood", "to": "Seeker", "width": 1}, {"color": "#555555", "from": "Dudley", "to": "Uncle Vernon", "width": 2}, {"color": "#555555", "from": "yeh\u2019ve", "to": "Yeh", "width": 1}, {"color": "#555555", "from": "yeh\u2019ve", "to": "un", "width": 1}, {"color": "#555555", "from": "Yeh", "to": "yeh don", "width": 1}, {"color": "#555555", "from": "Yeh", "to": "yeh", "width": 1}, {"color": "#555555", "from": "Uncle Vernon\u2019s", "to": "Dursley", "width": 1}, {"color": "#555555", "from": "Dursley", "to": "don", "width": 1}, {"color": "#555555", "from": "Dursley", "to": "Dumbledore", "width": 1}, {"color": "#555555", "from": "I\u2019m Keeper of Keys at Hogwarts", "to": "Hogwarts", "width": 1}, {"color": "#555555", "from": "I\u2019m Keeper of Keys at Hogwarts", "to": "yeh", "width": 1}, {"color": "#555555", "from": "Hogwarts", "to": "yeh", "width": 1}, {"color": "#555555", "from": "Dursleys", "to": "nothin\u2019", "width": 1}, {"color": "#555555", "from": "H. Potter", "to": "The Floor", "width": 1}, {"color": "#555555", "from": "Chf", "to": "WIZARDRY", "width": 1}, {"color": "#555555", "from": "International Confed", "to": "Wizards", "width": 1}, {"color": "#555555", "from": "International Confed", "to": "Supreme Mugwump,", "width": 1}, {"color": "#555555", "from": "Wizards", "to": "Supreme Mugwump,", "width": 1}, {"color": "#555555", "from": "Wizardry", "to": "Potter", "width": 1}, {"color": "#555555", "from": "Wizardry", "to": "Hogwarts School of Witchcraft", "width": 1}, {"color": "#555555", "from": "Potter", "to": "Hogwarts School of Witchcraft", "width": 1}, {"color": "#555555", "from": "Peeves", "to": "Percy", "width": 2}, {"color": "#555555", "from": "Percy", "to": "Caput Draconis", "width": 1}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "repulsion": {
+            "centralGravity": 0.2,
+            "damping": 0.09,
+            "nodeDistance": 120,
+            "springConstant": 0.05,
+            "springLength": 150
+        },
+        "solver": "repulsion",
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

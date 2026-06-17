@@ -1,0 +1,17 @@
+langchain
+langchain-community
+langchain-groq
+chromadb
+sentence-transformers
+langchain-experimental
+tf-keras
+ragas
+datasets
+numpy
+streamlit
+python-dotenv
+rapidocr-onnxruntime
+PyMuPDF
+pyvis
+networkx
+spacy

@@ -1,0 +1,192 @@
+{
+  "aggregate_scores": {
+    "context_precision": 0.6666666666166666,
+    "context_recall": 0.5,
+    "faithfulness": 0.5838888888888889,
+    "answer_relevancy": 0.7534152528638886
+  },
+  "per_question": [
+    {
+      "question": "Who gave Harry his invisibility cloak?",
+      "year": 1,
+      "answer": "It was a note that said \"Just in case. HP 1\" that was pinned to the cloak.",
+      "ground_truth": "I got it for Christmas! There was no name on the note, just said it belonged to my dad. Later I found out Dumbledore was the one who sent it to me.",
+      "num_contexts": 2,
+      "scores": {
+        "faithfulness": NaN,
+        "answer_relevancy": 0.5969108653458086,
+        "context_precision": NaN,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "How did Harry defeat the troll in the bathroom?",
+      "year": 1,
+      "answer": "Blimey, it was a close call! I didn't exactly defeat it on my own, but I managed to distract it long enough for Ron to knock it out with its own club. I grabbed my wand and stuck it up the troll's nose, which made it howl in pain and twist around. Ron then shouted \"Wingardium Leviosa!\" and the club flew out of the troll's hand, hit it on the head, and knocked it out cold. It was a bit of a team effort, really!",
+      "ground_truth": "I was just trying to stop it from getting Hermione! I jumped on its back and accidentally stuck my wand right up its nose. But it was Ron who really knocked it out, he used Wingardium Leviosa to drop its own club on its head.",
+      "num_contexts": 2,
+      "scores": {
+        "faithfulness": NaN,
+        "answer_relevancy": NaN,
+        "context_precision": NaN,
+        "context_recall": NaN
+      }
+    },
+    {
+      "question": "What is the three-headed dog guarding?",
+      "year": 1,
+      "answer": "Blimey, that's the question, isn't it? I've been thinkin' about it nonstop. I don't know what the three-headed dog is guarding, but I reckon it's something important. Snape was tryin' to get past it, and he's not exactly the type to be sneakin' around for no reason. I think it might be connected to whatever he's after, but I'm not sure what that is either. I'm hopin' we can figure it out, though.",
+      "ground_truth": "Hagrid calls him Fluffy, if you can believe it. He's standing on a trapdoor, guarding whatever Dumbledore moved from Gringotts... the Sorcerer's Stone!",
+      "num_contexts": 2,
+      "scores": {
+        "faithfulness": NaN,
+        "answer_relevancy": NaN,
+        "context_precision": 0.49999999995,
+        "context_recall": NaN
+      }
+    },
+    {
+      "question": "Who opened the Chamber of Secrets?",
+      "year": 2,
+      "answer": "Believe it or not, it was Ginny Weasley. Riddle told me that Ginny poured out her soul to him, and he grew stronger on a diet of her deepest fears and darkest secrets. He even said he was feeding her a few of his secrets, making her stronger too.",
+      "ground_truth": "It was Ginny, but she didn't mean to! She was being possessed by Tom Riddle through his old diary. Riddle is actually Voldemort, he was controlling her the whole time.",
+      "num_contexts": 2,
+      "scores": {
+        "faithfulness": NaN,
+        "answer_relevancy": NaN,
+        "context_precision": NaN,
+        "context_recall": NaN
+      }
+    },
+    {
+      "question": "What is a basilisk and how was it killed?",
+      "year": 2,
+      "answer": "Blimey, I've just figured it out! A basilisk is a giant serpent, the King of Serpents, and it's been terrorizing the school. It's got a deadly stare that can kill people instantly, and it's been using the plumbing to get around the castle. But, according to this book, the basilisk has a weakness – it's fatal to it when it hears the crowing of a rooster! So, if we can just get a rooster near the Chamber of Secrets, we might be able to kill the thing.",
+      "ground_truth": "It's a giant snake that kills you if you look it in the eye! I managed to kill it down in the Chamber using the Sword of Gryffindor, which Fawkes the phoenix brought to me inside the Sorting Hat.",
+      "num_contexts": 2,
+      "scores": {
+        "faithfulness": NaN,
+        "answer_relevancy": NaN,
+        "context_precision": 0.99999999995,
+        "context_recall": 0.5
+      }
+    },
+    {
+      "question": "Who is Sirius Black and what is his relationship to Harry?",
+      "year": 3,
+      "answer": "I know Sirius Black. But the text doesn't say how we are related. It just mentions that the Ministry has given the Dementors permission to perform some sort of punishment on him if they find him, and Lupin says it's the fate that awaits Sirius Black.",
+      "ground_truth": "He's my godfather! Everyone thought he betrayed my parents to Voldemort and killed Peter Pettigrew, but he's innocent. Pettigrew was the real traitor, disguised as Ron's rat Scabbers all these years!",
+      "num_contexts": 2,
+      "scores": {
+        "faithfulness": 0.8,
+        "answer_relevancy": NaN,
+        "context_precision": 0.9999999999,
+        "context_recall": 0.0
+      }
+    },
+    {
+      "question": "What is a Patronus and what form does Harry's take?",
+      "year": 3,
+      "answer": "A Patronus is a magical creature that's conjured up by a wizard to ward off Dementors. It's like a shield, really. When you cast the Patronus Charm, your Patronus appears and chases the Dementors away. \n\nAs for me, my Patronus took a while to figure out, but it's a stag. Yeah, a stag! It's a silver light that looks like a horse, but it's not a horse, it's a stag. I'm not entirely sure why it's a stag, but I'm just glad it works, you know?",
+      "ground_truth": "It's a kind of positive force, a shield you cast to fight off Dementors. You have to think of a really happy memory. Mine takes the shape of a stag, which was my dad's Animagus form... Prongs.",
+      "num_contexts": 2,
+      "scores": {
+        "faithfulness": 0.3,
+        "answer_relevancy": 0.8119983144906616,
+        "context_precision": 0.99999999995,
+        "context_recall": NaN
+      }
+    },
+    {
+      "question": "How did Harry get selected for the Triwizard Tournament?",
+      "year": 4,
+      "answer": "Believe it or not, I didn't exactly get selected for the Triwizard Tournament. It's a bit of a weird story, but apparently, my name was picked out of a Goblet of Fire by the Goblet itself. I was just a fourth-year student at Hogwarts, and I didn't even put my name in the Goblet. It was a real shock when I found out I was a Triwizard Tournament champion.",
+      "ground_truth": "I didn't put my name in the Goblet of Fire, I swear! Someone else must have done it. We found out later it was Barty Crouch Jr., who was using Polyjuice Potion to disguise himself as Mad-Eye Moody to make sure I won the tournament.",
+      "num_contexts": 2,
+      "scores": {
+        "faithfulness": NaN,
+        "answer_relevancy": 0.8513365787551955,
+        "context_precision": 0.0,
+        "context_recall": NaN
+      }
+    },
+    {
+      "question": "What happened in the graveyard at the end of the Triwizard Tournament?",
+      "year": 4,
+      "answer": "I don't know. The text doesn't mention anything about a graveyard at the end of the Triwizard Tournament.",
+      "ground_truth": "The cup was a Portkey! It took Cedric and me to a graveyard. Pettigrew killed Cedric... right in front of me. Then they tied me up and used my blood to bring Voldemort back to his body. I barely made it out alive with Cedric's body.",
+      "num_contexts": 2,
+      "scores": {
+        "faithfulness": NaN,
+        "answer_relevancy": NaN,
+        "context_precision": NaN,
+        "context_recall": NaN
+      }
+    },
+    {
+      "question": "What is the Order of the Phoenix?",
+      "year": 5,
+      "answer": "The Order of the Phoenix is a group of wizards and witches who are fighting against the Dark Lord, Voldemort. They're a secret organization, and they're made up of people who are trying to protect the wizarding world from the Dark Arts. I'm not really supposed to know about it, but I've sort of stumbled upon it, and I've been learning more about it from my friends and from people like Sirius Black and Albus Dumbledore. They're a really important group, and I'm trying to help them out, even though it's not always easy.",
+      "ground_truth": "It's a secret group Dumbledore put together to fight Voldemort and his Death Eaters. They operate out of Sirius's house at Grimmauld Place. The Ministry won't believe Voldemort is back, so the Order is doing it on their own.",
+      "num_contexts": 2,
+      "scores": {
+        "faithfulness": NaN,
+        "answer_relevancy": NaN,
+        "context_precision": 0.9999999999,
+        "context_recall": NaN
+      }
+    },
+    {
+      "question": "What is the prophecy about Harry and Voldemort?",
+      "year": 5,
+      "answer": "The prophecy's about a boy born at the end of July, who's got parents in the Order of the Phoenix, and they've narrowly escaped Voldemort three times. It says this boy's got a chance to conquer Voldemort for good. Dumbledore says it could've applied to two wizard boys, me and Neville Longbottom, but Voldemort chose me, not Neville. He gave me the scar that's been both a blessing and a curse.",
+      "ground_truth": "It says that the one with the power to vanquish the Dark Lord will be born as the seventh month dies... and that neither can live while the other survives. So in the end, it has to be me who kills him, or him who kills me.",
+      "num_contexts": 2,
+      "scores": {
+        "faithfulness": NaN,
+        "answer_relevancy": NaN,
+        "context_precision": NaN,
+        "context_recall": NaN
+      }
+    },
+    {
+      "question": "How did Dumbledore die?",
+      "year": 6,
+      "answer": "Blimey, mate! I don't know how you're thinkin' I'd know that. I'm still in Year 6, and I don't know what's gonna happen in the future. Dumbledore's still alive, as far as I know. Don't worry, he's a brilliant wizard and one of the safest people in the wizarding world. Hogwarts is the safest place, you know. You're safe here.",
+      "ground_truth": "Snape killed him. We were up on the Astronomy Tower... Dumbledore was so weak from drinking that potion in the cave, and Malfoy disarmed him. Then Snape just stepped forward and used the Killing Curse. I was paralyzed under my cloak, I couldn't do anything!",
+      "num_contexts": 2,
+      "scores": {
+        "faithfulness": 0.1111111111111111,
+        "answer_relevancy": NaN,
+        "context_precision": 0.0,
+        "context_recall": 0.5
+      }
+    },
+    {
+      "question": "What are the Deathly Hallows?",
+      "year": 7,
+      "answer": "I'm not entirely sure what the Deathly Hallows are, to be honest. Mr. Ollivander seemed really confused when I mentioned them, and Xenophilius is trying to explain it to us, but I'm not getting it. Apparently, it's got something to do with a story called 'The Tale of the Three Brothers', but I've never heard of it. Ron and Hermione seem to know more about it, though.",
+      "ground_truth": "They're three incredibly powerful objects from the Tale of the Three Brothers: the Elder Wand, the Resurrection Stone, and the Invisibility Cloak. If someone unites all three, they're said to be the Master of Death. My cloak is actually the third Hallow!",
+      "num_contexts": 2,
+      "scores": {
+        "faithfulness": 0.8333333333333334,
+        "answer_relevancy": NaN,
+        "context_precision": 0.49999999995,
+        "context_recall": 1.0
+      }
+    },
+    {
+      "question": "How did Harry survive Voldemort's killing curse in the Forbidden Forest?",
+      "year": 7,
+      "answer": "Blimey, that's a tough one, mate. I think it's because I've got a bit of protection on me. You see, when Voldemort tried to kill me, he didn't realize that I'd already been protected by my mum, Lily. She died to save me, and that's given me a sort of... I don't know, a shield, I suppose. It's like my mum's love and protection are still around me, even though she's not here anymore.\n\nAnd then, when Voldemort tried to kill me again in the forest, I think it's because I've still got that protection inside me. It's like... I don't know, it's like I'm still tied to life because of my mum's love. And that's what kept me going, even when Voldemort tried to kill me with the Killing Curse.\n\nBut, to be honest, I'm not entirely sure. It's all a bit confusing, even to me.",
+      "ground_truth": "When Voldemort used my blood to get his body back, he unknowingly tethered me to life while he lives. Plus, I had a piece of his soul inside me. When he hit me with the Killing Curse in the forest, he only killed that piece of his own soul, not me.",
+      "num_contexts": 2,
+      "scores": {
+        "faithfulness": 0.875,
+        "answer_relevancy": NaN,
+        "context_precision": 0.99999999995,
+        "context_recall": 1.0
+      }
+    }
+  ]
+}
